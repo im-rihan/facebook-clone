@@ -7,7 +7,7 @@ export default NextAuth({
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-      callbackURL: "https://localhost:3000/#/auth/facebook/callback",
+      callbackURL: process.env.NEXTAUTH_URL,
     }),
     // ...add more providers here
   ],

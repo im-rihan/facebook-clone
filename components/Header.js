@@ -14,12 +14,14 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
 import HeaderIcon from "./HeaderIcon";
+import { useSession, signOut } from "next-auth/react";
 
 // const myLoader = ({ src, width, quality }) => {
 //   return `https://ibb.co/zJtmKwQ/${src}?w=${width}&q=${quality || 75}`;
 // };
 
 function Header() {
+ const [session] = useSession()
   return (
     <div className="flex sticky top-0 p-2 items-center lg:px-5 shadow-md  bg-white">
       {/* header left */}
@@ -56,6 +58,16 @@ function Header() {
       {/* header right */}
       <div className="flex sm:space-x-2 items-center justify-end">
         {/* Profile Pic */}
+        <Image
+          src={session.user.image}
+          onClick={signOut}
+          className="rounded-full cursor-pointer"
+          alt="user"
+          width={40}
+          height={40}
+          layout="fixed"
+        />
+
         <p className="whitespace-nowrap pr-3 font-semibold">Rihan Mohammed</p>
         <ViewGridIcon className="icon" />
         <ChatIcon className="icon" />
